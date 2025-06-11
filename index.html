@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonk Light & Shadow Art</title>
+    <meta name="description" content="Explore Bonk Project's innovative paper-cut art combined with light projection, showcasing stunning shadow contrasts.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwin -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFD700', //
+                        secondary: '#1A1A1A', // 
+                        accent: '#333333', // 
+                        light: '#F5F5F5', // 
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+            .shadow-custom {
+                filter: blur(5px) drop-shadow(0 0 10px rgba(255,215,0,0.5));
+            }
+            .light-gradient {
+                background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,215,0,0.6) 100%);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter text-gray-800 overflow-x-hidden">
+
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Bonk<span class="text-primary">Art</span></a>
+            
+       
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-primary transition-colors">Home</a>
+                <a href="#interactive" class="text-white hover:text-primary transition-colors">Interactive</a>
+                <a href="#gallery" class="text-white hover:text-primary transition-colors">Gallery</a>
+                <a href="#about" class="text-white hover:text-primary transition-colors">About</a>
+                <a href="#contact" class="text-white hover:text-primary transition-colors">Contact</a>
+            </div>
+            
+        
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+
+        <div id="mobileMenu" class="hidden md:hidden bg-secondary/95 absolute w-full">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-primary transition-colors py-2">Home</a>
+                <a href="#interactive" class="text-white hover:text-primary transition-colors py-2">Interactive</a>
+                <a href="#gallery" class="text-white hover:text-primary transition-colors py-2">Gallery</a>
+                <a href="#about" class="text-white hover:text-primary transition-colors py-2">About</a>
+                <a href="#contact" class="text-white hover:text-primary transition-colors py-2">Contact</a>
+            </div>
+        </div>
+    </header>
+
+ 
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+   
+        <div class="absolute inset-0 z-0">
+            <img src="images/1.jpg" alt="Bonk Art Exhibition" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+     
+        <div class="container mx-auto px-4 z-10 text-center">
+            <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white text-shadow mb-6 leading-tight">
+                Light & Shadow <span class="text-primary">Transformation</span>
+            </h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 max-w-2xl mx-auto mb-8">
+                Explore the captivating interplay between Bonk's paper-cut art and projected light shadows
+            </p>
+            <a href="#interactive" class="inline-block bg-primary hover:bg-primary/90 text-secondary font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg transform hover:-translate-y-1">
+                Experience Interactive Demo
+            </a>
+        </div>
+        
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#interactive" class="text-white/80 hover:text-primary transition-colors">
+                <i class="fa fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+
+    <section id="interactive" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-secondary mb-4">Interactive Light & Shadow</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Drag the light source to see how shadows change based on angle and distance</p>
+            </div>
+            
+    
+            <div class="relative mx-auto max-w-4xl h-[400px] border-2 border-dashed border-gray-300 rounded-lg overflow-hidden bg-white shadow-lg">
+ 
+                <div id="paperCut" class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-3/4">
+                    <svg viewBox="0 0 200 300" class="w-full h-full">
+                
+                        <path d="M100,0 C150,50 150,250 100,300 C50,250 50,50 100,0 Z" fill="none" stroke="#333" stroke-width="2"/>
+                        <path d="M100,50 C120,80 120,220 100,250 C80,220 80,80 100,50 Z" fill="none" stroke="#333" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="30" fill="none" stroke="#333" stroke-width="2"/>
+                        <circle cx="100" cy="200" r="30" fill="none" stroke="#333" stroke-width="2"/>
+                    </svg>
+                </div>
+                
+   
+                <div id="lightSource" class="absolute w-16 h-16 rounded-full light-gradient cursor-move shadow-custom z-10" style="left: 100px; top: 100px;">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fa fa-lightbulb-o text-yellow-800 text-2xl"></i>
+                    </div>
+                </div>
+                
+               
+                <div id="shadowEffect" class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-full opacity-70 filter blur-xl">
+                    <svg viewBox="0 0 300 400" class="w-full h-full">
+                
+                        <path d="M150,50 C225,125 225,325 150,400 C75,325 75,125 150,50 Z" fill="#FFD700" fill-opacity="0.5"/>
+                        <path d="M150,125 C180,170 180,270 150,325 C120,270 120,170 150,125 Z" fill="#FFD700" fill-opacity="0.5"/>
+                        <circle cx="150" cy="175" r="50" fill="#FFD700" fill-opacity="0.5"/>
+                        <circle cx="150" cy="275" r="50" fill="#FFD700" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <p class="text-gray-600 mb-6">This interactive demo shows how changing light direction affects shadow formation. In our physical installations, we use:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i class="fa fa-cubes text-primary text-3xl mb-4"></i>
+                        <h3 class="font-semibold text-lg mb-2">Multi-layered Paper Cuts</h3>
+                        <p class="text-gray-600">Combining different cut densities for varied light transmission</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i class="fa fa-lightbulb-o text-primary text-3xl mb-4"></i>
+                        <h3 class="font-semibold text-lg mb-2">Directional Lighting</h3>
+                        <p class="text-gray-600">Precision placement of LED sources to create depth</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i class="fa fa-magic text-primary text-3xl mb-4"></i>
+                        <h3 class="font-semibold text-lg mb-2">Dynamic Projection</h3>
+                        <p class="text-gray-600">Real-time shadow manipulation through motion sensors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-secondary mb-4">Artwork Gallery</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore our collection of paper-cut artworks and their projected shadows</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active bg-primary text-secondary px-6 py-2 rounded-full font-medium transition-all hover:shadow-md" data-filter="all">All Works</button>
+                <button class="filter-btn bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-full font-medium transition-all hover:shadow-md" data-filter="static">Static Contrast</button>
+               
+            </div>
+            
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+   
+                <div class="gallery-item group" data-category="static">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]">
+                        <img src="images/1.jpg" alt="Layered Paper Cut with Dual Projection" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-6 w-full">
+                                <h3 class="text-white font-semibold text-xl mb-2">Layered Contrast</h3>
+                                <p class="text-white/80 text-sm">Two-layer paper cut with dual light projection</p>
+                                <button class="view-details mt-4 bg-primary/90 hover:bg-primary text-secondary font-medium py-2 px-4 rounded transition-colors">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--  2 -->
+                <div class="gallery-item group" data-category="dynamic">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]">
+                        <img src="images/2.jpg" alt="Interactive Motion Sensor Installation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-6 w-full">
+                                <h3 class="text-white font-semibold text-xl mb-2">Motion Symphony</h3>
+                                <p class="text-white/80 text-sm">Interactive installation with motion sensors</p>
+                                <button class="view-details mt-4 bg-primary/90 hover:bg-primary text-secondary font-medium py-2 px-4 rounded transition-colors">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--  3 -->
+                <div class="gallery-item group" data-category="narrative">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]">
+                        <img src="images/3.jpg" alt="Three-Act Narrative Projection" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-6 w-full">
+                                <h3 class="text-white font-semibold text-xl mb-2">Narrative Journey</h3>
+                                <p class="text-white/80 text-sm">Three-act story through changing light patterns</p>
+                                <button class="view-details mt-4 bg-primary/90 hover:bg-primary text-secondary font-medium py-2 px-4 rounded transition-colors">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+         
+             
+                
+
+          
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2">
+                    <img src="images/0.jpg" alt="Artist at Work" class="w-full h-auto rounded-lg shadow-xl">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-secondary mb-6">About the Project</h2>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        The Bonk Light & Shadow Art project explores the captivating interplay between traditional paper-cut techniques and modern lighting technology. Our artists combine precision-cut paper designs with strategic lighting to create stunning visual contrasts that transform static art into dynamic experiences.
+                    </p>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Each artwork in our collection tells a unique story through the manipulation of light and shadow. By layering different densities of paper cuts and experimenting with various light angles, we create depth, movement, and narrative in our installations.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="font-semibold text-lg mb-2 flex items-center">
+                                <i class="fa fa-lightbulb-o text-primary mr-2"></i> Concept
+                            </h3>
+                            <p class="text-gray-600">Exploring the relationship between absence and presence through negative space</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="font-semibold text-lg mb-2 flex items-center">
+                                <i class="fa fa-scissors text-primary mr-2"></i> Technique
+                            </h3>
+                            <p class="text-gray-600">Traditional paper-cutting combined with modern digital design tools</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="font-semibold text-lg mb-2 flex items-center">
+                                <i class="fa fa-users text-primary mr-2"></i> Collaboration
+                            </h3>
+                            <p class="text-gray-600">Translating Bonk's vision into visual art</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="font-semibold text-lg mb-2 flex items-center">
+                                <i class="fa fa-globe text-primary mr-2"></i> Exhibition
+                            </h3>
+                            <p class="text-gray-600"> Visit Main Art on Twitter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-secondary text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold mb-6">Stay Updated</h2>
+                <p class="text-white/80 mb-10">Contact to our newsletter to receive updates on new artworks,and behind-the-scenes insights.</p>
+                
+                <form class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-1 px-6 py-4 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button a href="https://x.com/lucky_1_12?s=21" type="submit" class="bg-primary hover:bg-primary/90 text-secondary font-semibold py-4 px-8 rounded-md transition-all hover:shadow-lg">
+                        <div class="flex flex-col md:flex-row justify-center gap-8">
+                            <a href="https://x.com/lucky_1_12?s=21" class="flex items-center text-white/80 hover:text-primary transition-colors">
+                            Contact Twitter
+                        </div>
+                        
+                    </button>
+                </form>
+                
+                <div class="mt-12 pt-12 border-t border-white/20">
+                    <h3 class="text-xl font-semibold mb-6">Get in Touch</h3>
+                    <div class="flex flex-col md:flex-row justify-center gap-8">
+            
+                        
+                        <a href="#" class="flex items-center text-white/80 hover:text-primary transition-colors">
+                            <i class="fa fa-map-marker text-xl mr-2"></i>
+                            <span>Gallery Space, Art District</span>
+                        </a>
+                    </div>
+                    
+                  
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-black text-white/60 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2025 Bonk Light & Shadow Art. All rights reserved.</p>
+                
+              
+            </div>
+        </div>
+    </footer>
+
+ 
+    <div id="workModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto">
+            <div class="relative">
+                <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl z-10">
+                    <i class="fa fa-times"></i>
+                </button>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="bg-gray-100 p-6 flex items-center justify-center">
+                        <img id="modalImage" src="https://picsum.photos/id/1015/800/600" alt="Artwork Detail" class="max-w-full max-h-[60vh] object-contain">
+                    </div>
+                    
+                    <div class="p-8">
+                        <h3 id="modalTitle" class="text-2xl font-bold text-secondary mb-4">Layered Contrast</h3>
+                        <p id="modalCategory" class="text-primary font-medium mb-6">Static Contrast Series</p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2">About This Work</h4>
+                            <p class="text-gray-600 mb-4">
+                                This piece demonstrates the interplay between two layers of paper-cut art with varying densities. The top layer features bold, structural outlines, while the bottom layer adds intricate details that emerge through strategic lighting.
+                            </p>
+                            <p class="text-gray-600">
+                                By using dual light sources from above and to the side, we create a dynamic contrast between sharp, defined shadows and soft, diffused light patterns.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Materials</h4>
+                                <p class="text-gray-600">Hand-cut archival paper, LED lighting</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Dimensions</h4>
+                                <p class="text-gray-600">120cm × 80cm × 30cm</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Year</h4>
+                                <p class="text-gray-600">2025</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Location</h4>
+                                <p class="text-gray-600">Virtual Exhibition</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-primary hover:bg-primary/90 text-secondary font-medium py-2 px-6 rounded-md transition-colors">
+                                <i class="fa fa-shopping-cart mr-2"></i> Purchase Print
+                            </button>
+                            <button class="bg-secondary hover:bg-secondary/90 text-white font-medium py-2 px-6 rounded-md transition-colors">
+                                <i class="fa fa-share-alt mr-2"></i>
+                                <div a href="https://x.com/lucky_1_12?s=21"> 
+                                    <a href="https://x.com/lucky_1_12?s=21">
+                                    Share This</a>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-secondary/95', 'shadow-md');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-secondary/95', 'shadow-md');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+        
+      
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+            } else {
+                menuBtn.innerHTML = '<i class="fa fa-times"></i>';
+            }
+        });
+        
+        const lightSource = document.getElementById('lightSource');
+        const shadowEffect = document.getElementById('shadowEffect');
+        const paperCut = document.getElementById('paperCut');
+        
+        let isDragging = false;
+        let offsetX, offsetY;
+        
+        lightSource.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - lightSource.getBoundingClientRect().left;
+            offsetY = e.clientY - lightSource.getBoundingClientRect().top;
+            lightSource.style.cursor = 'grabbing';
+        });
+
+        
+        lightSource.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const touch = e.touches[0];
+            offsetX = touch.clientX - lightSource.getBoundingClientRect().left;
+            offsetY = touch.clientY - lightSource.getBoundingClientRect().top;
+            lightSource.style.cursor = 'grabbing';
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const container = lightSource.parentElement.getBoundingClientRect();
+            let x = e.clientX - container.left - offsetX;
+            let y = e.clientY - container.top - offsetY;
+            
+
+            x = Math.max(0, Math.min(x, container.width - lightSource.offsetWidth));
+            y = Math.max(0, Math.min(y, container.height - lightSource.offsetHeight));
+            
+            lightSource.style.left = `${x}px`;
+            lightSource.style.top = `${y}px`;
+            
+    
+            updateShadow(x, y);
+        });
+
+      
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const touch = e.touches[0];
+            const container = lightSource.parentElement.getBoundingClientRect();
+            let x = touch.clientX - container.left - offsetX;
+            let y = touch.clientY - container.top - offsetY;
+            
+          
+            x = Math.max(0, Math.min(x, container.width - lightSource.offsetWidth));
+            y = Math.max(0, Math.min(y, container.height - lightSource.offsetHeight));
+            
+            lightSource.style.left = `${x}px`;
+            lightSource.style.top = `${y}px`;
+            
+            
+            updateShadow(x, y);
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            lightSource.style.cursor = 'grab';
+        });
+
+    
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+            lightSource.style.cursor = 'grab';
+        });
+        
+        function updateShadow(x, y) {
+            const containerWidth = lightSource.parentElement.offsetWidth;
+            const containerHeight = lightSource.parentElement.offsetHeight;
+       
+            const xPercent = x / containerWidth;
+            const yPercent = y / containerHeight;
+            
+           
+            const shadowX = (xPercent - 0.5) * 200; 
+            const shadowY = (yPercent - 0.5) * 200;
+            const blurAmount = 5 + Math.sqrt(xPercent * xPercent + yPercent * yPercent) * 10;
+            
+            shadowEffect.style.transform = `translate(${-shadowX/2}px, ${-shadowY/2}px) scale(${1 + Math.sqrt(xPercent * xPercent + yPercent * yPercent) * 0.2})`;
+            shadowEffect.style.filter = `blur(${blurAmount}px) drop-shadow(${shadowX}px ${shadowY}px 20px rgba(255, 215, 0, 0.7))`;
+         
+            paperCut.style.transform = `translate(-50%, -50%) rotate(${(xPercent - 0.5) * 5}deg)`;
+        }
+        
+       
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+              
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-primary', 'text-secondary');
+                    b.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                btn.classList.add('active', 'bg-primary', 'text-secondary');
+                btn.classList.remove('bg-gray-200', 'text-gray-700');
+                
+               
+                const filter = btn.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+      
+        const workModal = document.getElementById('workModal');
+        const closeModal = document.getElementById('closeModal');
+        const viewDetailsBtns = document.querySelectorAll('.view-details');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCategory = document.getElementById('modalCategory');
+        
+        viewDetailsBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const galleryItem = btn.closest('.gallery-item');
+                const imageSrc = galleryItem.querySelector('img').src;
+                const title = galleryItem.querySelector('h3').textContent;
+                const category = galleryItem.getAttribute('data-category');
+                
+                
+                modalImage.src = imageSrc.replace('/800/600', '/1200/800');
+                modalTitle.textContent = title;
+                
+                switch(category) {
+                    case 'static':
+                        modalCategory.textContent = 'Static Contrast Series';
+                        break;
+                    case 'dynamic':
+                        modalCategory.textContent = 'Dynamic Interaction Series';
+                        break;
+                    case 'narrative':
+                        modalCategory.textContent = 'Narrative Projection Series';
+                        break;
+                }
+                
+             
+                workModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            workModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        
+        workModal.addEventListener('click', (e) => {
+            if (e.target === workModal) {
+                workModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+       
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, 
+                        behavior: 'smooth'
+                    });
+                    
+                    
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
